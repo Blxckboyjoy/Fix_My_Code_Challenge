@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 class Square():
     
     width = 0
@@ -7,6 +5,10 @@ class Square():
 
     
     def __init__(self, *args, **kwargs):
+        if 'width' in kwargs:
+            kwargs['height'] = kwargs['width']
+        elif 'height' in kwargs:
+            kwargs['width'] = kwargs['height']
         for key, value in kwargs.items():
             setattr(self, key, value)
 
@@ -20,9 +22,3 @@ class Square():
 
     def __str__(self):
         return "{}/{}".format(self.width, self.height)
-
-if __name__ == "__main__":
-    s = Square(width=12, height=12)
-    print(s)
-    print(s.area_of_my_square())
-    print(s.PerimeterOfMySquare())
